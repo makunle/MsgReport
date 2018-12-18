@@ -6,8 +6,8 @@ import json
 import sys
 import itchat
 
-key = 'mkey123'
-host = 'localhost'
+key = 'mkey'
+host = '192.168.0.103'
 port = 9999
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -16,22 +16,26 @@ server.bind((host, port))
 
 running = True
 
+
 @itchat.msg_register(itchat.content.TEXT)
 def text_reply(msg):
-    print(msg.fromUserName)
+    print('get wx msg from %s' % msg.fromUserName)
 
 
-def botSendMsg(msg, to):
-    target = itchat.search_friends(nickName=to)[0]['UserName']
+def botSendMsg(_from, _msg, _to):
+    target = itchat.search_friends(nickName=_to)[0]['UserName']
+    msg = 'from:\t%s\nmsg:\t%s' % (_from, _msg)
     itchat.send(msg, target)
-	
+
+
 def quite():
-    global running,server
+    global running, server
     running = False
     server.close()
     itchat.logout()
     print('quited')
     sys.exit(0)
+
 
 def mainService(socket, addr):
     global key
@@ -48,19 +52,18 @@ def mainService(socket, addr):
             _key = _json.get('key', '')
             _msg = _json.get('msg', '')
             _extra = _json.get('extra', '')
-            _to = _json.get('to','')
+            _to = _json.get('to', '')
+            _from = _json.get('from', '')
 
-            if(key != _key):
+            if (key != _key):
                 return
 
-            print('key:%s msg:%s extra:%s' % (_key, _msg, _extra))
-
-            botSendMsg(_msg, _to)
+            botSendMsg(_from, _msg, _to)
 
             socket.send('success'.encode())
 
-            if(extra == 'exit'):
-               quite()
+            if (_extra == 'exit'):
+                quite()
     except:
         print('connect break with:%s' % str(addr))
     finally:
@@ -75,17 +78,19 @@ def socketServerThread():
         service = threading.Thread(target=mainService, args=(sock, addr))
         service.start()
 
+
 def botServerThread():
-    itchat.auto_login(enableCmdQR=True)
+    itchat.auto_login(hotReload=True, enableCmdQR=2)
     itchat.run(True)
-	
+
+
 def consleThread():
-	while True:
-		cmd = input()
-		print('cmd %s' % cmd)
-		if(cmd == 'exit'):
-			quite()
-			return
+    while True:
+        cmd = input()
+        print('cmd %s' % cmd)
+        if (cmd == 'exit'):
+            quite()
+            return
 
 
 if __name__ == '__main__':
@@ -94,7 +99,6 @@ if __name__ == '__main__':
 
     botThread = threading.Thread(target=botServerThread)
     botThread.start()
-	
+
     consleThread = threading.Thread(target=consleThread)
     consleThread.start()
-	

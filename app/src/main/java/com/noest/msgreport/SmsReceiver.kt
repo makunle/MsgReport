@@ -30,6 +30,8 @@ class SmsReceiver : BroadcastReceiver() {
 
         LogX.d(TAG, "sms from: $from \n content: $msgBody")
 
+        SenderService.startService(context, msgBody.toString(), from)
+
         val keySet = intent.extras.keySet()
         for (key in keySet) {
             LogX.d(TAG, "bundle: " + key + " | " + intent.getStringExtra(key))

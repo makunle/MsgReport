@@ -1,7 +1,10 @@
 package com.noest.msgreport
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.noest.minicache.MiniCache
+import com.noest.msgreport.Constants.Companion.HOST
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject
 import java.io.BufferedWriter
@@ -16,47 +19,62 @@ class MainActivity : AppCompatActivity() {
 
     val TAG = "MainActivity"
 
+    val mKV = MiniCache.getDefaultCache()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setTitle(getString(R.string.param_set))
 
-        btnClientSend.setOnClickListener { it ->
-            Thread(object : Runnable {
-                override fun run() {
-                    val host = etServerHost.text.toString()
-                    val port = etServerPort.text.toString().toInt()
-                    val key = etKey.text.toString()
-                    val msg = etMsg.text.toString()
-                    val extra = etExtra.text.toString()
-                    val to = etTo.text.toString()
+        init()
+        set()
 
-                    val js = JSONObject()
-                    js.put("key", key)
-                    js.put("msg", msg)
-                    js.put("extra", extra)
-                    js.put("to", to)
-
-                    var socket: Socket? = null
-                    try {
-                        socket = Socket(host, port)
-
-                        val output = socket.getOutputStream()
-                        val input = socket.getInputStream()
-
-                        output?.write(js.toString().toByteArray())
-
-                        val bytes = ByteArray(1024)
-                        input?.read(bytes);
-                        LogX.d(TAG, "return: " + bytes.toString(Charset.defaultCharset()))
-                    } catch (e: Exception) {
-                        LogX.d(TAG, e.localizedMessage)
-                    } finally {
-                        socket?.close()
-                    }
-
-                }
-            }).start()
+        btnSet.setOnClickListener {
+            set()
         }
+
+        btnReset.setOnClickListener {
+            init()
+        }
+
+        btnClientSend.setOnClickListener {
+            val msg = etMsg.text.toString()
+            val from = etFrom.text.toString()
+
+            SenderService.startService(this, msg, from)
+        }
+    }
+
+    fun init() {
+        val host = mKV.getString(Constants.HOST, "localhost")
+        val port = mKV.getInt(Constants.PORT, 9999)
+        val key = mKV.getString(Constants.KEY, "mkey")
+        val to = mKV.getString(Constants.TO, "指间的微妙")
+        val extra = mKV.getString(Constants.EXTRA, "123")
+        val from = mKV.getString(Constants.FROM, "10086")
+
+        etServerHost.setText(host)
+        etServerPort.setText(port.toString())
+        etKey.setText(key)
+        etTo.setText(to)
+        etExtra.setText(extra)
+        etFrom.setText(from)
+    }
+
+    fun set(){
+        val host = etServerHost.text.toString()
+        val port = etServerPort.text.toString().toInt()
+        val key = etKey.text.toString()
+        val extra = etExtra.text.toString()
+        val to = etTo.text.toString()
+        val from = etFrom.text.toString()
+
+        mKV.putString(Constants.HOST, host)
+        mKV.putInt(Constants.PORT, port)
+        mKV.putString(Constants.KEY, key)
+        mKV.putString(Constants.EXTRA, extra)
+        mKV.putString(Constants.TO, to)
+        mKV.putString(Constants.FROM, from)
     }
 }

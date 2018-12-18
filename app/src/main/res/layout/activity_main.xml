@@ -8,13 +8,21 @@
         android:orientation="vertical"
         tools:context=".MainActivity">
 
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:textSize="20sp"
+    android:text="param set"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="1dp"
+                  android:layout_marginBottom="10dp"
+                  android:background="#868484"/>
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="host: "/>
+                android:text="  host: "/>
         <EditText
                 android:layout_width="0dp"
                 android:text="localhost"
@@ -29,7 +37,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ip: "/>
+                android:text="      ip: "/>
         <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -44,7 +52,7 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="key: "/>
+                android:text="   key: "/>
         <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -59,7 +67,32 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="msg: "/>
+                android:text="     to: "/>
+        <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="指间的微妙"
+                android:id="@+id/etTo"/>
+    </LinearLayout>
+
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+              android:layout_marginTop="10dp"
+              android:textSize="20sp"
+              android:text="test value"/>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="1dp"
+                  android:layout_marginBottom="10dp"
+                  android:background="#868484"/>
+
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  msg: "/>
         <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -89,18 +122,32 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="to: "/>
+                android:text="from: "/>
         <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="指间的微妙"
-                android:id="@+id/etTo"/>
+                android:id="@+id/etFrom"/>
     </LinearLayout>
 
-    <Button android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="send"
-            android:id="@+id/btnClientSend"/>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="set"
+                android:id="@+id/btnSet"/>
 
+        <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="reset"
+                android:id="@+id/btnReset"/>
+
+        <Button android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="send"
+                android:id="@+id/btnClientSend"/>
+    </LinearLayout>
 </LinearLayout>

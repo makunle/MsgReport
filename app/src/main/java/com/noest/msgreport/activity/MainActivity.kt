@@ -1,19 +1,12 @@
-package com.noest.msgreport
+package com.noest.msgreport.activity
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.noest.minicache.MiniCache
-import com.noest.msgreport.Constants.Companion.HOST
+import com.noest.msgreport.R
+import com.noest.msgreport.service.SenderService
+import com.noest.msgreport.util.Constants
 import kotlinx.android.synthetic.main.activity_main.*
-import org.json.JSONObject
-import java.io.BufferedWriter
-import java.io.DataInputStream
-import java.io.DataOutputStream
-import java.io.OutputStreamWriter
-import java.lang.Exception
-import java.net.*
-import java.nio.charset.Charset
 
 class MainActivity : AppCompatActivity() {
 

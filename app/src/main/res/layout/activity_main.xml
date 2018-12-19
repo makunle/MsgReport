@@ -6,7 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".MainActivity">
+        tools:context=".activity.MainActivity">
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:textSize="20sp"
@@ -97,7 +97,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="你好，小明"
+                android:text="【腾讯科技】89765（腾讯微云验证码，有效期10分钟）"
                 android:id="@+id/etMsg"/>
     </LinearLayout>
 

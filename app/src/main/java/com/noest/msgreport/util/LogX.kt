@@ -1,6 +1,7 @@
-package com.noest.msgreport
+package com.noest.msgreport.util
 
 import android.util.Log
+import com.noest.msgreport.BuildConfig
 
 object LogX {
     val PREFIX = "msgreport_"

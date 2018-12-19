@@ -1,13 +1,13 @@
-package com.noest.msgreport
+package com.noest.msgreport.receiver
 
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Telephony
-import android.provider.Telephony.TextBasedSmsColumns.*
+import com.noest.msgreport.util.LogX
+import com.noest.msgreport.service.SenderService
 import java.lang.StringBuilder
-import java.net.URI
 
 class SmsReceiver : BroadcastReceiver() {
 

@@ -1,11 +1,11 @@
 package com.noest.msgreport
 
 import android.app.Application
-import com.noest.minicache.MiniCache
+import com.noest.msgreport.util.Setting
 
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        MiniCache.init(cacheDir.absolutePath)
+        Setting.init(this)
     }
 }

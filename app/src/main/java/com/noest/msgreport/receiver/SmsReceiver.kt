@@ -6,7 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Telephony
 import com.noest.msgreport.util.LogX
-import com.noest.msgreport.service.SenderService
+import com.noest.msgreport.service.RelayService
 import java.lang.StringBuilder
 
 class SmsReceiver : BroadcastReceiver() {
@@ -30,7 +30,7 @@ class SmsReceiver : BroadcastReceiver() {
 
         LogX.d(TAG, "sms from: $from \n content: $msgBody")
 
-        SenderService.startService(context, msgBody.toString(), from)
+        RelayService.startService(context, msgBody.toString(), from)
 
         val keySet = intent.extras.keySet()
         for (key in keySet) {

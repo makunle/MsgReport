@@ -8,146 +8,67 @@
         android:orientation="vertical"
         tools:context=".activity.MainActivity">
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:textSize="20sp"
-    android:text="param set"/>
-
-    <LinearLayout android:layout_width="match_parent" android:layout_height="1dp"
-                  android:layout_marginBottom="10dp"
-                  android:background="#868484"/>
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:id="@+id/btnClientSend"/>
 
     <LinearLayout
             android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
             android:layout_height="wrap_content">
         <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="  host: "/>
-        <EditText
                 android:layout_width="0dp"
-                android:text="localhost"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:id="@+id/etServerHost"/>
+                android:layout_height="50dp"
+                android:layout_marginLeft="10dp"
+                android:gravity="center_vertical"
+                android:textColor="#FFF"
+                android:text="短信转发"
+                android:textSize="20sp"
+        />
+        <Switch android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="10dp"
+                android:layout_height="wrap_content" android:id="@+id/stDeliverSwitch"/>
     </LinearLayout>
-
-    <LinearLayout
+    <TabHost
+            android:id="@+id/tabHost"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="      ip: "/>
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="9999"
-                android:id="@+id/etServerPort"/>
-    </LinearLayout>
+            android:layout_height="match_parent">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="   key: "/>
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="mkey123"
-                android:id="@+id/etKey"/>
-    </LinearLayout>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+            <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="0dp">
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="     to: "/>
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="指间的微妙"
-                android:id="@+id/etTo"/>
-    </LinearLayout>
+                <LinearLayout
+                        android:id="@+id/mailTab"
+                        android:layout_width="match_parent"
+                        android:background="#a3f"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
 
-    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
-              android:layout_marginTop="10dp"
-              android:textSize="20sp"
-              android:text="test value"/>
+                </LinearLayout>
 
-    <LinearLayout android:layout_width="match_parent" android:layout_height="1dp"
-                  android:layout_marginBottom="10dp"
-                  android:background="#868484"/>
+                <LinearLayout
+                        android:id="@+id/wxTab"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#e2ce8b"
+                        android:orientation="vertical">
+
+                </LinearLayout>
+            </FrameLayout>
+            <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="match_parent"
+                    android:layout_height="43dp"/>
+        </LinearLayout>
+    </TabHost>
 
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="  msg: "/>
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="【腾讯科技】89765（腾讯微云验证码，有效期10分钟）"
-                android:id="@+id/etMsg"/>
-    </LinearLayout>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="extra: "/>
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="exit1"
-                android:id="@+id/etExtra"/>
-    </LinearLayout>
-
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="from: "/>
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="指间的微妙"
-                android:id="@+id/etFrom"/>
-    </LinearLayout>
-
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
-        <Button android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="set"
-                android:id="@+id/btnSet"/>
-
-        <Button android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="reset"
-                android:id="@+id/btnReset"/>
-
-        <Button android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="send"
-                android:id="@+id/btnClientSend"/>
-    </LinearLayout>
 </LinearLayout>

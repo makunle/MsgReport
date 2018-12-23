@@ -3,7 +3,6 @@ package com.noest.msgreport.relayer
 import android.text.TextUtils
 import com.noest.msgreport.util.Constants
 import com.noest.msgreport.util.Constants.Companion.DEVICE_ID
-import com.noest.msgreport.util.Constants.Companion.USE_MAIL_WAY
 import com.noest.msgreport.util.Setting
 import com.noest.msgreport.util.VerifyCodeGetter
 import java.lang.Exception
@@ -54,14 +53,14 @@ object MailDeliver : IDeliver {
     }
 
     private fun createContent(msg: String, from: String): String {
-        val deviec = Setting.getString(DEVICE_ID, "")
-        return "$msg \n from:$from"
+        val device = Setting.getString(DEVICE_ID, "")
+        return "$msg \n\r 【$from】-【$device】"
     }
 
     private fun createSubject(msg: String, from: String): String {
         val verifyCode = VerifyCodeGetter.Get(msg)
         if (verifyCode?.second == null) {
-            return from
+            return "短信: $from"
         }
         val code = verifyCode.second
         val title = verifyCode.first ?: ""

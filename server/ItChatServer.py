@@ -7,7 +7,7 @@ import sys
 import itchat
 
 key = 'mkey'
-host = '192.168.0.103'
+host = '127.0.0.1'
 port = 9999
 
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -19,7 +19,8 @@ running = True
 
 @itchat.msg_register(itchat.content.TEXT)
 def text_reply(msg):
-    print('get wx msg from %s' % msg.fromUserName)
+    pass
+    #return 'get: %s' % msg['Text']
 
 
 def botSendMsg(_from, _msg, _to):
@@ -45,7 +46,10 @@ def mainService(socket, addr):
         data = socket.recv(1024)
         if data:
             msg = data.decode("utf-8")
-            print("get msg %s from %s" % (msg, str(addr)))
+            try:
+                print("get msg %s from %s" % (msg, str(addr)))
+            except:
+                pass
 
             _json = json.loads(msg)
 
@@ -78,20 +82,9 @@ def socketServerThread():
         service = threading.Thread(target=mainService, args=(sock, addr))
         service.start()
 
-
 def botServerThread():
     itchat.auto_login(hotReload=True, enableCmdQR=2)
     itchat.run(True)
-
-
-def consleThread():
-    while True:
-        cmd = input()
-        print('cmd %s' % cmd)
-        if (cmd == 'exit'):
-            quite()
-            return
-
 
 if __name__ == '__main__':
     serverThread = threading.Thread(target=socketServerThread)
@@ -100,5 +93,5 @@ if __name__ == '__main__':
     botThread = threading.Thread(target=botServerThread)
     botThread.start()
 
-    consleThread = threading.Thread(target=consleThread)
-    consleThread.start()
+    serverThread.join()
+    botThread.join()

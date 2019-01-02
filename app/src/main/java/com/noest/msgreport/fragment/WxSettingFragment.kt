@@ -16,7 +16,6 @@ import com.noest.msgreport.util.Constants.Companion.SERVER_KEY
 import com.noest.msgreport.util.Constants.Companion.SERVER_PORT
 import com.noest.msgreport.util.Constants.Companion.TEST_FROM
 import com.noest.msgreport.util.Constants.Companion.TEST_MSG
-import com.noest.msgreport.util.Constants.Companion.USE_WX_WAY
 import com.noest.msgreport.util.Constants.Companion.WAY_WX
 import com.noest.msgreport.util.Setting
 import kotlinx.android.synthetic.main.wx_set_layout.view.*
@@ -31,7 +30,7 @@ class WxSettingFragment : Fragment() {
         initStat(view)
 
         view.switchWxRelay.setOnCheckedChangeListener { _, isChecked ->
-            Setting.setBoolean(USE_WX_WAY, isChecked)
+            Setting.setBoolean(WAY_WX, isChecked)
         }
 
         view.etWxServerHost.addTextChangedListener(textWatcher)
@@ -44,10 +43,12 @@ class WxSettingFragment : Fragment() {
         view.etTestFrom.addTextChangedListener(textWatcher)
 
         view.btSendTest.setOnClickListener {
-            RelayService.startService(inflater.context,
+            RelayService.startService(
+                inflater.context,
                 view.etTestMsg.text.toString(),
                 view.etTestFrom.text.toString(),
-                WAY_WX)
+                arrayListOf(WAY_WX)
+            )
         }
 
         mView = view
@@ -55,7 +56,7 @@ class WxSettingFragment : Fragment() {
     }
 
     private fun initStat(view: View) {
-        view.switchWxRelay.isChecked = Setting.getBoolean(USE_WX_WAY, false)
+        view.switchWxRelay.isChecked = Setting.getBoolean(WAY_WX, false)
 
         view.etWxServerHost.setText(Setting.getString(SERVER_HOST, "localhost"))
         view.etWxServerPort.setText(Setting.getString(SERVER_PORT, "9999"))

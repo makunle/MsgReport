@@ -12,6 +12,7 @@ class Constants {
         const val FROM = "from"
         const val WAY_WX = "wx"
         const val WAY_MAIL = "mail"
+        val WAY_ALL = arrayListOf(WAY_WX, WAY_MAIL)
 
         const val MAIL_RECEIVER = "mail_receiver"
 
@@ -19,9 +20,6 @@ class Constants {
 
         const val MAIL_SENDER_ACCOUNT = "mail_sender_account"
         const val MAIL_SENDER_PASSWORD = "mail_sender_passwd"
-
-        const val USE_MAIL_WAY = "use_mail"
-        const val USE_WX_WAY = "use_wx"
 
         const val TEST_MSG = "test_msg"
         const val TEST_FROM = "test_from"

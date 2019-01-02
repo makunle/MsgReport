@@ -54,7 +54,7 @@ object MailDeliver : IDeliver {
 
     private fun createContent(msg: String, from: String): String {
         val device = Setting.getString(DEVICE_ID, "")
-        return "$msg \n\r 【$from】-【$device】"
+        return "$msg <br> 【$from】-【$device】"
     }
 
     private fun createSubject(msg: String, from: String): String {

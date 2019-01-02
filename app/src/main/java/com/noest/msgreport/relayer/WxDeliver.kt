@@ -11,7 +11,6 @@ import java.nio.charset.Charset
 object WxDeliver : IDeliver {
 
     override fun deliver(msg: String, from: String): Boolean {
-
         val host = Setting.getString(Constants.SERVER_HOST, "")
         val port = Setting.getString(Constants.SERVER_PORT, "").toInt()
         val key = Setting.getString(Constants.SERVER_KEY, "")

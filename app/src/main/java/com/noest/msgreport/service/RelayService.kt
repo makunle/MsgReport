@@ -6,12 +6,13 @@ import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
+import com.noest.msgreport.deliver.FtqqDeliver
 import com.noest.msgreport.util.Constants.Companion.WAY_MAIL
 import com.noest.msgreport.util.Constants.Companion.WAY_WX
-import com.noest.msgreport.relayer.MailDeliver
-import com.noest.msgreport.relayer.WxDeliver
+import com.noest.msgreport.deliver.MailDeliver
+import com.noest.msgreport.deliver.WxDeliver
 import com.noest.msgreport.util.Constants.Companion.WAY_ALL
-import com.noest.msgreport.util.LogX
+import com.noest.msgreport.util.Constants.Companion.WAY_FTQQ
 import com.noest.msgreport.util.Setting
 import java.lang.Exception
 
@@ -25,7 +26,8 @@ class RelayService : IntentService("RelayService") {
 
         val delivers = mapOf(
             WAY_MAIL to MailDeliver,
-            WAY_WX to WxDeliver
+            WAY_WX to WxDeliver,
+            WAY_FTQQ to FtqqDeliver
         )
 
         fun startService(context: Context, msg: String?, from: String?, way: ArrayList<String> = WAY_ALL) {

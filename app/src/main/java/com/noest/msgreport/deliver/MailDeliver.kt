@@ -1,4 +1,4 @@
-package com.noest.msgreport.relayer
+package com.noest.msgreport.deliver
 
 import android.text.TextUtils
 import com.noest.msgreport.util.Constants

@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.os.Bundle
 
 import com.noest.msgreport.R
+import com.noest.msgreport.fragment.FtqqSettingFragment
 import com.noest.msgreport.fragment.MailSettingFragment
 import com.noest.msgreport.fragment.WxSettingFragment
 import kotlinx.android.synthetic.main.activity_wayset.*
@@ -32,12 +33,13 @@ class WaysetActivity : AppCompatActivity() {
             return when (position) {
                 0 -> MailSettingFragment()
                 1 -> WxSettingFragment()
+                2 -> FtqqSettingFragment()
                 else -> Fragment()
             }
         }
 
         override fun getCount(): Int {
-            return 2
+            return 3
         }
     }
 }

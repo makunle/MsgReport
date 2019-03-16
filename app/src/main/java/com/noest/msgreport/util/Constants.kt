@@ -12,9 +12,12 @@ class Constants {
         const val FROM = "from"
         const val WAY_WX = "wx"
         const val WAY_MAIL = "mail"
-        val WAY_ALL = arrayListOf(WAY_WX, WAY_MAIL)
+        const val WAY_FTQQ = "ftqq"
+        val WAY_ALL = arrayListOf(WAY_WX, WAY_MAIL, WAY_FTQQ)
 
         const val MAIL_RECEIVER = "mail_receiver"
+
+        const val FTQQ_SECKEY = "ftqq_key"
 
         const val DEVICE_ID = "device_id"
 
